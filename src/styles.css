@@ -1,0 +1,32 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;overflow: hidden }
+.alternate{
+    background: #000;
+    color:#fff;
+}
+.margin{
+    width:85%;
+    margin:0 auto; 
+}
+.placholder-bg{
+    background: #bdbdbd;
+}
+.placholder-bg img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+a{
+    color: #555;
+}
+a:hover{
+    color: #fa8a11
+}
+@media(max-width:500px){
+    .margin{
+        width:95%;
+    }
+}

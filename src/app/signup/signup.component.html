@@ -1,0 +1,68 @@
+<section id="signup-form">
+  <div class="signup-form-container">
+    <div class="signup-form">
+      <h2>Already Have An Account? <a routerLink="/login">Log In</a></h2>
+      
+      <div class="main-box">
+        <form [formGroup]="signUpForm" class="form" (submit)="submitUserData()">
+          <mat-form-field class="form-field">
+            <input matInput placeholder="Name" formControlName="name">
+            <mat-error *ngIf="signUpForm.controls.name.errors">
+              <mat-error *ngIf="signUpForm.controls.name.errors.required">
+                Name is required
+              </mat-error>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="form-field">
+            <input matInput type="email" placeholder="Email" formControlName="email">
+            <mat-error *ngIf="signUpForm.controls.email.errors">
+              <mat-error *ngIf="signUpForm.controls.email.errors.required">Email is Required</mat-error>
+              <mat-error *ngIf="signUpForm.controls.email.errors.email">Must be valid email</mat-error>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="form-field">
+            <input matInput type="tel" placeholder="Mobile" formControlName="mobile">
+            <mat-error *ngIf="signUpForm.controls.mobile.errors">
+              <mat-error *ngIf="signUpForm.controls.mobile.errors.required">
+                mobile is required
+              </mat-error>
+              <mat-error *ngIf="signUpForm.controls.mobile.errors.minlength">
+                minlength should be 10
+              </mat-error>
+              <mat-error *ngIf="signUpForm.controls.mobile.errors.maxlength">
+                max length should be 12
+              </mat-error>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="form-field">
+            <mat-select placeholder="Select Profession" formControlName="profession">
+              <mat-option *ngFor="let profession of professions" [value]="profession">{{profession}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="form-field">
+            <input matInput placeholder="Country" formControlName="country">
+          </mat-form-field>
+          <mat-form-field class="form-field">
+            <input matInput placeholder="City" formControlName="city">
+          </mat-form-field>
+          <mat-form-field class="form-field">
+            <input matInput type="password" placeholder="Password" formControlName="password">
+            <mat-error *ngIf="signUpForm.controls.password.errors">
+              <mat-error *ngIf="signUpForm.controls.password.errors.required">Password Required</mat-error>
+              <mat-error *ngIf="signUpForm.controls.password.errors.pattern">Password  must contain alphabet, number and speciol character</mat-error>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="form-field">
+            <input matInput type="password" placeholder="Confirm Password" formControlName="cpassword" pattern="{{getPassword(signUpForm)}}">
+            <mat-error *ngIf="signUpForm.controls.cpassword.errors">
+              <mat-error *ngIf="signUpForm.controls.cpassword.errors.required">Password Required</mat-error>
+              <mat-error *ngIf="signUpForm.controls.cpassword.errors.pattern">Passwrod Should match</mat-error>
+            </mat-error>
+          </mat-form-field>
+          <button mat-raised-button color="primary" [disabled]="signUpForm.invalid">Signup</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<app-my-spinner *ngIf="isShowLoad"></app-my-spinner>

@@ -1,0 +1,74 @@
+<mat-sidenav-container class="sidenav-container" [hasBackdrop]="false">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async)" fixedTopGap="113">
+    <mat-nav-list>
+      <a mat-list-item routerLink="/">HOME</a>
+      <a mat-list-item href="#">PROJECTS</a>
+      <button mat-button [matMenuTriggerFor]="menu1">MATERIALS
+        <mat-icon>keyboard_arrow_down</mat-icon>
+      </button>
+      <mat-menu #menu1="matMenu">
+        <button mat-menu-item>FINISHES</button>
+        <button mat-menu-item>CONSTRUCTION & MATERIAL</button>
+        <button mat-menu-item>EQUIPMENT</button>
+        <button mat-menu-item>MEP & HVAC</button>
+        <button mat-menu-item>APPLICATION</button>
+        <button mat-menu-item>OUTDOOR SPACES</button>
+        <button mat-menu-item>TECHNOLOGIES</button>
+      </mat-menu>
+      <button mat-button [matMenuTriggerFor]="menu2">STUDENT CORNER&nbsp; <mat-icon>keyboard_arrow_down</mat-icon></button>
+      <mat-menu #menu2="matMenu">
+        <button mat-menu-item>THESIS</button>
+        <button mat-menu-item>PORTFOLIO & CASE STUDY</button>
+        <button mat-menu-item>DESSERTATION</button>
+        <button mat-menu-item>THESIS REPORT</button>
+        <button mat-menu-item>STUDENT WORK</button>
+      </mat-menu>
+      <a mat-list-item href="#">BLOG</a>
+      <a mat-list-item href="#">UPLOAD</a>
+      <a mat-list-item href="#">GET QUOTE</a>
+      <a mat-list-item href="#">EVENTS</a>
+      <a mat-list-item href="#">JOBS</a>
+      <a mat-list-item href="#">COMPETITION</a>
+      <a mat-list-item href="#">PARTNER WITH US</a>
+      <a mat-list-item routerLink="/login">LOGIN</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <header>
+      <mat-toolbar color="primary" class="brand-logo">
+        <img src="assets/image/brand-logo.png" height="100%">
+        <h2>ARCHUE</h2>
+      </mat-toolbar>
+    </header>
+    <mat-toolbar class="alternate">
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <div class="main-nav-container" *ngIf="!(isHandset$ | async)">
+        <ul class="desktop-main-nav">
+          <li><a routerLink="/">HOME</a></li>
+          <li><a>PROJECTS</a></li>
+          <li><a>MATERIALS</a></li>
+          <li><a>STUDENT CORNER</a></li>
+          <li><a>BLOG</a></li>
+          <li><a>UPLOAD</a></li>
+          <li><a>GET QUOTE</a></li>
+        </ul>
+      </div>
+    </mat-toolbar>
+    <mat-toolbar *ngIf="!(isHandset$ | async)" class="main-nav-bottom">
+      <div class="main-nav-container">
+        <ul class="desktop-main-nav">
+          <li><a>EVENTS</a></li>
+          <li><a>JOBS</a></li>
+          <li><a>COMPETITION</a></li>
+          <li><a>PARTNER WITH US</a></li>
+          <li><a routerLink="/login">LOGIN</a></li>
+        </ul>
+      </div>
+    </mat-toolbar>
+    <!-- Add Content Here -->
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>
