@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { TermConditionComponent } from './term-condition/term-condition.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   {path:"",redirectTo:"/home",pathMatch:"full"},
@@ -12,7 +13,7 @@ const routes: Routes = [
   {path:'login',component:LoginComponent},
   {path:'signup',component:SignupComponent},
   {path:'term-condition',component:TermConditionComponent},
-  {path:'dashboard',component:DashboardComponent},
+  {path:'dashboard',canActivate:[AuthGuard],component:DashboardComponent},
 ];
 
 @NgModule({

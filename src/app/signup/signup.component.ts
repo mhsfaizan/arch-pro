@@ -34,13 +34,23 @@ export class SignupComponent implements OnInit {
     this.isShowLoad = true;
     this._login.signup(this.signUpForm.value)
       .then((resp) => {
+        let saveUser = resp.user;
         console.log(resp);
         const { name, email, mobile, country, city, profession } = this.signUpForm.value; //destructing
         let user = { name, email, mobile, country, city, profession } //object shorthand litral
-        this._login.login(user, resp.user.uid)
+        this._login.saveUser(user, resp.user.uid)
           .then((resp) => {
-            this.isShowLoad = false;
-            this._router.navigate(['/dashboard']);
+            this._login.getCurrentUser().updateProfile({
+              displayName: name,
+              photoURL:""
+            }).then((resp)=>{
+              this._login.saveDataToLocal(saveUser);
+              this.isShowLoad = false;
+              this._router.navigate(['/dashboard']);
+            })
+            .catch((err)=>{
+              console.log(err);
+            })
           })
           .catch((err) => {
             this.isShowLoad = false;

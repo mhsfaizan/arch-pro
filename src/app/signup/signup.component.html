@@ -2,7 +2,7 @@
   <div class="signup-form-container">
     <div class="signup-form">
       <h2>Already Have An Account? <a routerLink="/login">Log In</a></h2>
-      
+      <mat-progress-bar mode="indeterminate" *ngIf="isShowLoad"></mat-progress-bar>
       <div class="main-box">
         <form [formGroup]="signUpForm" class="form" (submit)="submitUserData()">
           <mat-form-field class="form-field">
@@ -65,4 +65,4 @@
     </div>
   </div>
 </section>
-<app-my-spinner *ngIf="isShowLoad"></app-my-spinner>
+<!-- <app-my-spinner ></app-my-spinner> -->

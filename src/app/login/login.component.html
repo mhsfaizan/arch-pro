@@ -7,9 +7,10 @@
       <div class="login-form">
         <h3>For Uploading You Have to Signup/login on platform
           New in Archue? <a routerLink="/signup">Sign Up</a></h3>
+        <mat-progress-bar mode="indeterminate" *ngIf="isShowLoad"></mat-progress-bar>
         <div class="login">
           <h1>ARCHUE</h1>
-          <form [formGroup]="loginForm">
+          <form [formGroup]="loginForm" (submit)="login(loginForm.value)">
             <mat-form-field class="full-width">
               <input matInput type="email" placeholder="Email" formControlName="email">
             </mat-form-field>

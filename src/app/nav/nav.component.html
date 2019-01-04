@@ -54,6 +54,13 @@
           <li><a>BLOG</a></li>
           <li><a>UPLOAD</a></li>
           <li><a>GET QUOTE</a></li>
+          <li *ngIf="_lg.isLoggedIn()"[matMenuTriggerFor]="menu3">
+            <a><span><mat-icon>account_circle</mat-icon>&nbsp;{{_lg.getUser().displayName}}</span></a>
+          </li>
+          <mat-menu #menu3="matMenu">
+            <a  (click)="logout()" mat-menu-item> Logout</a>
+            <a routerLink="/dashboard" mat-menu-item>Dashboard</a>
+          </mat-menu>
         </ul>
       </div>
     </mat-toolbar>
