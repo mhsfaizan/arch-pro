@@ -7,6 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { UploadAppModule } from './upload-app/upload-app.module';
+
 
 
 
@@ -83,7 +85,8 @@ import { MySpinnerComponent } from './my-spinner/my-spinner.component';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    MatGridListModule
+    MatGridListModule,
+    UploadAppModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

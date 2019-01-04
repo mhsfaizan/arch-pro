@@ -14,6 +14,7 @@ const routes: Routes = [
   {path:'signup',component:SignupComponent},
   {path:'term-condition',component:TermConditionComponent},
   {path:'dashboard',canActivate:[AuthGuard],component:DashboardComponent},
+  {path:"upload",loadChildren:'app/upload-app/upload-app.module#UploadAppModule'}
 ];
 
 @NgModule({
