@@ -16,7 +16,7 @@
         <button mat-menu-item>OUTDOOR SPACES</button>
         <button mat-menu-item>TECHNOLOGIES</button>
       </mat-menu>
-      <button mat-button [matMenuTriggerFor]="menu2">STUDENT CORNER&nbsp; <mat-icon>keyboard_arrow_down</mat-icon></button>
+      <button mat-button [matMenuTriggerFor]="menu2">STUDENT CORNER&nbsp; <mat-icon >keyboard_arrow_down</mat-icon></button>
       <mat-menu #menu2="matMenu">
         <button mat-menu-item>THESIS</button>
         <button mat-menu-item>PORTFOLIO & CASE STUDY</button>
@@ -25,13 +25,13 @@
         <button mat-menu-item>STUDENT WORK</button>
       </mat-menu>
       <a mat-list-item href="#">BLOG</a>
-      <a mat-list-item href="#">UPLOAD</a>
+      <a mat-list-item routerLink="/upload">UPLOAD</a>
       <a mat-list-item href="#">GET QUOTE</a>
       <a mat-list-item href="#">EVENTS</a>
       <a mat-list-item href="#">JOBS</a>
       <a mat-list-item href="#">COMPETITION</a>
       <a mat-list-item href="#">PARTNER WITH US</a>
-      <a mat-list-item routerLink="/login">LOGIN</a>
+      <a mat-list-item routerLink="/login" *ngIf="!(_lg.isLoggedIn())">LOGIN</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -45,20 +45,42 @@
       <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
+      <div class="ml-auto user-conatiner" *ngIf="(isHandset$ | async)">
+        <a mat-list-item *ngIf="_lg.isLoggedIn()" [matMenuTriggerFor]="menu3" class="user-conatiner">
+          <span>
+            <mat-icon>account_circle</mat-icon>
+          </span>&nbsp;{{_lg.getUser().displayName}}
+        </a>
+        <mat-menu #menu3="matMenu">
+          <a (click)="logout()" mat-menu-item> Logout</a>
+          <a routerLink="/dashboard" mat-menu-item>Dashboard</a>
+        </mat-menu>
+      </div>
       <div class="main-nav-container" *ngIf="!(isHandset$ | async)">
         <ul class="desktop-main-nav">
           <li><a routerLink="/">HOME</a></li>
           <li><a>PROJECTS</a></li>
           <li><a>MATERIALS</a></li>
-          <li><a>STUDENT CORNER</a></li>
+          <li>
+            <a [matMenuTriggerFor]="studentCorner" class="student-corner-conatiner">STUDENT CORNER<span ><mat-icon>keyboard_arrow_down</mat-icon></span></a>
+            <mat-menu #studentCorner="matMenu">
+              <button mat-menu-item>THESIS</button>
+              <button mat-menu-item>PORTFOLIO & CASE STUDY</button>
+              <button mat-menu-item>DESSERTATION</button>
+              <button mat-menu-item>THESIS REPORT</button>
+              <button mat-menu-item>STUDENT WORK</button>
+            </mat-menu>
+          </li>
           <li><a>BLOG</a></li>
-          <li><a>UPLOAD</a></li>
+          <li><a routerLink="/upload">UPLOAD</a></li>
           <li><a>GET QUOTE</a></li>
-          <li *ngIf="_lg.isLoggedIn()"[matMenuTriggerFor]="menu3">
-            <a><span><mat-icon>account_circle</mat-icon>&nbsp;{{_lg.getUser().displayName}}</span></a>
+          <li *ngIf="_lg.isLoggedIn()" [matMenuTriggerFor]="menu3" class="user-conatiner">
+            <a><span>
+                <mat-icon>account_circle</mat-icon>
+              </span>&nbsp;{{_lg.getUser().displayName}}</a>
           </li>
           <mat-menu #menu3="matMenu">
-            <a  (click)="logout()" mat-menu-item> Logout</a>
+            <a (click)="logout()" mat-menu-item> Logout</a>
             <a routerLink="/dashboard" mat-menu-item>Dashboard</a>
           </mat-menu>
         </ul>
@@ -71,7 +93,7 @@
           <li><a>JOBS</a></li>
           <li><a>COMPETITION</a></li>
           <li><a>PARTNER WITH US</a></li>
-          <li><a routerLink="/login">LOGIN</a></li>
+          <li><a routerLink="/login" *ngIf="!(_lg.isLoggedIn())">LOGIN</a></li>
         </ul>
       </div>
     </mat-toolbar>

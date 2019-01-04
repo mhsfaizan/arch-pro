@@ -56,3 +56,18 @@
   height: 32px;
   font-size: 1rem;
 }
+.user-conatiner{
+  cursor: pointer;
+  color: #fff;
+}
+.user-conatiner a span{
+  position: relative;
+  top: 6px;
+}
+.student-corner-conatiner{
+  cursor: pointer;
+}
+.student-corner-conatiner span{
+   position: relative;
+   top: 5px;
+}

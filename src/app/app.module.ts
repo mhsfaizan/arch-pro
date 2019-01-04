@@ -16,7 +16,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
+import { MatSidenavModule, MatIconModule, MatListModule, MatGridListModule } from '@angular/material';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatInputModule } from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
@@ -59,7 +59,7 @@ import { MySpinnerComponent } from './my-spinner/my-spinner.component';
     SignupComponent,
     TermConditionComponent,
     DashboardComponent,
-    MySpinnerComponent
+    MySpinnerComponent,
   ],
   imports: [
     BrowserModule,
@@ -82,7 +82,8 @@ import { MySpinnerComponent } from './my-spinner/my-spinner.component';
     MatProgressSpinnerModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
