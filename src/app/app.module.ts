@@ -4,27 +4,14 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule } from '@angular/forms';
-import { FormsModule } from '@angular/forms';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { UploadAppModule } from './upload-app/upload-app.module';
+
+
+/* ===============materail common module start==============*/
+import { MaterialModuleModule } from './material-module/material-module.module';
+/* ===============materail common module end==============*/
 
 
 
-
-
-/*====== material module start==============*/
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { LayoutModule } from '@angular/cdk/layout';
-import { MatSidenavModule, MatIconModule, MatListModule, MatGridListModule } from '@angular/material';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatInputModule } from '@angular/material/input';
-import {MatSelectModule} from '@angular/material/select';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-/*====== material module start==============*/
 
 /*====== firebase  module start==============*/
 import { environment } from 'src/environments/environment';
@@ -66,27 +53,12 @@ import { MySpinnerComponent } from './my-spinner/my-spinner.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule,
-    FormsModule,
+    
     BrowserAnimationsModule,
-    MatCardModule,
-    MatButtonModule,
-    MatToolbarModule,
-    LayoutModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
-    MatMenuModule,
-    MatInputModule,
-    MatCheckboxModule,
-    MatSelectModule,
-    MatProgressBarModule,
-    MatProgressSpinnerModule,
+    MaterialModuleModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    MatGridListModule,
-    UploadAppModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

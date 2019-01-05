@@ -1,3 +1,88 @@
-<p>
-  upload-project works!
-</p>
+<mat-card class="my-card">
+  <mat-card-header>
+    <span><strong>Note:</strong>You can Upload jpeg,jpg,png</span>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="uploadProject">
+      <mat-grid-list cols="2" rowHeight="4.5rem" gutterSize="1rem">
+        <mat-grid-tile>
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Project Name</mat-label>
+            <input matInput placeholder="Project Name" formControlName="name">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Location</mat-label>
+            <input matInput placeholder="Location..." formControlName="location">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Institute/Firm</mat-label>
+            <input matInput placeholder="Institute/Firm" formControlName="institute">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Area</mat-label>
+            <input matInput placeholder="Area" formControlName="area">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Project Year</mat-label>
+            <input matInput type="number" placeholder="Project Year" formControlName="year">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field appearance="outline" class="full-width">
+            <!-- <mat-label>Project Type</mat-label>
+            <input matInput placeholder="Area" formControlName="area"> -->
+            <mat-select placeholder="Project Type" formControlName="type">
+              <mat-option *ngFor="let category of categories" [value]="category">
+                {{category}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </form>
+    <mat-vertical-stepper [linear]="true" #stepper>
+      <mat-step [stepControl]="sitePlan">
+        <form [formGroup]="sitePlan">
+          <ng-template matStepLabel>Site Plan</ng-template>
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>SitePlan</mat-label>
+            <input matInput placeholder="Last name, First name" formControlName="siteplandescription" required>
+          </mat-form-field>
+          <div>
+            <button mat-raised-button matStepperNext color="primary">Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="floorPlan">
+        <form [formGroup]="floorPlan">
+          <ng-template matStepLabel>Floor Plan</ng-template>
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Floor Plan</mat-label>
+            <input matInput placeholder="Address" formControlName="floorplanDescription" required>
+          </mat-form-field>
+          <div>
+            <button mat-raised-button matStepperPrevious color="primary">Back</button>
+            &nbsp;
+            <button mat-raised-button matStepperNext color="primary">Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        You are now done.
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="stepper.reset()">Reset</button>
+        </div>
+      </mat-step>
+    </mat-vertical-stepper>
+  </mat-card-content>
+</mat-card>

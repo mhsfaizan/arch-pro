@@ -1,0 +1,14 @@
+.my-card{
+    margin: 1rem;
+}
+.my-card mat-card-header{
+    background-color: #eee;
+    margin: -16px -16px 0;
+    padding: 16px;
+}
+.my-card mat-card-content{
+    padding-top: 1rem;
+}
+.my-card .full-width{
+    width: 100%;
+}
