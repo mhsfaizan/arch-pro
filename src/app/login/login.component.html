@@ -15,7 +15,8 @@
               <input matInput type="email" placeholder="Email" formControlName="email">
             </mat-form-field>
             <mat-form-field class="full-width">
-              <input matInput type="password" placeholder="Password" formControlName="password">
+              <input matInput type="password" placeholder="Password" formControlName="password" [type]="hide?'password':'text'">
+              <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </mat-form-field>
             <mat-checkbox  formControlName="checked" color="primary">I am Agree With <a routerLink="/term-condition">Terms &amp; Conditions</a></mat-checkbox>
             <button mat-raised-button color="primary">Login</button>

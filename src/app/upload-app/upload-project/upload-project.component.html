@@ -54,10 +54,27 @@
           <ng-template matStepLabel>Site Plan</ng-template>
           <mat-form-field appearance="outline" class="full-width">
             <mat-label>SitePlan</mat-label>
-            <input matInput placeholder="Last name, First name" formControlName="siteplandescription" required>
+            <textarea matInput placeholder="Siteplan Description" formControlName="siteplandescription" required></textarea>
           </mat-form-field>
           <div>
-            <button mat-raised-button matStepperNext color="primary">Next</button>
+            <mat-label>Add Images Here</mat-label><br /><br />
+            <button mat-fab color="primary" (click)="siteplan.click()">
+              <mat-icon>add</mat-icon>
+            </button>
+            <input hidden type="file" accept="image/*" multiple #siteplan (change)="add($event.target.files,siteplanImages)">
+            <br /><br />
+            <div class="images" *ngIf="siteplanImages.length!=0">
+              <div class="image" *ngFor="let image of siteplanImages;let index=index">
+                <img [src]="image.url" height="100%">
+                <button mat-mini-fab color="primary" (click)="removeImage(siteplanImages,index)">
+                  <mat-icon>remove</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+          <br />
+          <div>
+            <button mat-raised-button matStepperNext color="accent">Next</button>
           </div>
         </form>
       </mat-step>
@@ -66,12 +83,60 @@
           <ng-template matStepLabel>Floor Plan</ng-template>
           <mat-form-field appearance="outline" class="full-width">
             <mat-label>Floor Plan</mat-label>
-            <input matInput placeholder="Address" formControlName="floorplanDescription" required>
+            <textarea matInput placeholder="Floor Description" formControlName="floorplanDescription" required></textarea>
           </mat-form-field>
           <div>
-            <button mat-raised-button matStepperPrevious color="primary">Back</button>
+            <mat-label>Add Images Here</mat-label><br /><br />
+            <button mat-fab color="primary" (click)="floorplan.click()">
+              <mat-icon>add</mat-icon>
+            </button>
+            <input hidden type="file" accept="image/*" multiple #floorplan (change)="add($event.target.files,floorplanImages)">
+            <br /><br />
+            <div class="images" *ngIf="floorplanImages.length!=0">
+              <div class="image" *ngFor="let image of floorplanImages">
+                <img *ngFor="let image of floorplanImages" [src]="image.url" height="50">
+                <button mat-mini-fab color="primary" (click)="removeImage(floorplanImages,index)">
+                  <mat-icon>remove</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+          <br />
+          <div>
+            <button mat-raised-button matStepperPrevious color="accent">Back</button>
             &nbsp;
-            <button mat-raised-button matStepperNext color="primary">Next</button>
+            <button mat-raised-button matStepperNext color="accent">Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="elevationPlan">
+        <form [formGroup]="elevationPlan">
+          <ng-template matStepLabel>Elevation Plan</ng-template>
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Elevation Plan</mat-label>
+            <textarea matInput placeholder="Elevation Description" formControlName="elevationplanDescription" required></textarea>
+          </mat-form-field>
+          <div>
+            <mat-label>Add Images Here</mat-label><br /><br />
+            <button mat-fab color="primary" (click)="elevation.click()">
+              <mat-icon>add</mat-icon>
+            </button>
+            <input hidden type="file" accept="image/*" multiple #elevation (change)="add($event.target.files,elevationplanImages)">
+            <br /><br />
+            <div class="images" *ngIf="elevationplanImages.length!=0">
+              <div class="image" *ngFor="let image of elevationplanImages">
+                <img [src]="image.url" height="100%">
+                <button mat-mini-fab color="primary" (click)="removeImage(elevationplanImages,index)">
+                  <mat-icon>remove</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+          <br />
+          <div>
+            <button mat-raised-button matStepperPrevious color="accent">Back</button>
+            &nbsp;
+            <button mat-raised-button matStepperNext color="accent">Next</button>
           </div>
         </form>
       </mat-step>

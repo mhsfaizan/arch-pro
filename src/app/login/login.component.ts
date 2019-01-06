@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
   isShowLoad:boolean = false;
   constructor( private _lg:LoginSignupService,private _router:Router) { }
   // checked:boolean = true;
+  hide:boolean = true;
   ngOnInit() {
   }
   loginForm = new FormGroup({
