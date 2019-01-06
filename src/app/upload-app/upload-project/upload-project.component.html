@@ -54,7 +54,7 @@
           <ng-template matStepLabel>Site Plan</ng-template>
           <mat-form-field appearance="outline" class="full-width">
             <mat-label>SitePlan</mat-label>
-            <textarea matInput placeholder="Siteplan Description" formControlName="siteplandescription" required></textarea>
+            <textarea matInput placeholder="Siteplan Description" formControlName="siteplandescription"></textarea>
           </mat-form-field>
           <div>
             <mat-label>Add Images Here</mat-label><br /><br />
@@ -83,7 +83,7 @@
           <ng-template matStepLabel>Floor Plan</ng-template>
           <mat-form-field appearance="outline" class="full-width">
             <mat-label>Floor Plan</mat-label>
-            <textarea matInput placeholder="Floor Description" formControlName="floorplanDescription" required></textarea>
+            <textarea matInput placeholder="Floor Description" formControlName="floorplanDescription"></textarea>
           </mat-form-field>
           <div>
             <mat-label>Add Images Here</mat-label><br /><br />
@@ -94,7 +94,7 @@
             <br /><br />
             <div class="images" *ngIf="floorplanImages.length!=0">
               <div class="image" *ngFor="let image of floorplanImages">
-                <img *ngFor="let image of floorplanImages" [src]="image.url" height="50">
+                <img [src]="image.url" height="100%">
                 <button mat-mini-fab color="primary" (click)="removeImage(floorplanImages,index)">
                   <mat-icon>remove</mat-icon>
                 </button>
@@ -114,7 +114,7 @@
           <ng-template matStepLabel>Elevation Plan</ng-template>
           <mat-form-field appearance="outline" class="full-width">
             <mat-label>Elevation Plan</mat-label>
-            <textarea matInput placeholder="Elevation Description" formControlName="elevationplanDescription" required></textarea>
+            <textarea matInput placeholder="Elevation Description" formControlName="elevationplanDescription"></textarea>
           </mat-form-field>
           <div>
             <mat-label>Add Images Here</mat-label><br /><br />
@@ -140,13 +140,78 @@
           </div>
         </form>
       </mat-step>
-      <mat-step>
-        <ng-template matStepLabel>Done</ng-template>
-        You are now done.
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button (click)="stepper.reset()">Reset</button>
-        </div>
+      <mat-step [stepControl]="sectionPlan">
+        <form [formGroup]="sectionPlan">
+          <ng-template matStepLabel>Section Plan</ng-template>
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Section Plan</mat-label>
+            <textarea matInput placeholder="Section Description" formControlName="sectionplanDescription"></textarea>
+          </mat-form-field>
+          <div>
+            <mat-label>Add Images Here</mat-label><br /><br />
+            <button mat-fab color="primary" (click)="section.click()">
+              <mat-icon>add</mat-icon>
+            </button>
+            <input hidden type="file" accept="image/*" multiple #section (change)="add($event.target.files,sectionplanImages)">
+            <br /><br />
+            <div class="images" *ngIf="sectionplanImages.length!=0">
+              <div class="image" *ngFor="let image of sectionplanImages">
+                <img [src]="image.url" height="100%">
+                <button mat-mini-fab color="primary" (click)="removeImage(sectionplanImages,index)">
+                  <mat-icon>remove</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+          <br />
+          <div>
+            <button mat-raised-button matStepperPrevious color="accent">Back</button>
+            &nbsp;
+            <button mat-raised-button matStepperNext color="accent">Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="view3d">
+        <form [formGroup]="view3d">
+          <ng-template matStepLabel>view/3d</ng-template>
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>view/3d</mat-label>
+            <textarea matInput placeholder="view3d Description" formControlName="view3dDescription"></textarea>
+          </mat-form-field>
+          <div>
+            <mat-label>Add Images Here</mat-label><br /><br />
+            <button mat-fab color="primary" (click)="view3d.click()">
+              <mat-icon>add</mat-icon>
+            </button>
+            <input hidden type="file" accept="image/*" multiple #view3d (change)="add($event.target.files,view3dImages)">
+            <br /><br />
+            <div class="images" *ngIf="view3dImages.length!=0">
+              <div class="image" *ngFor="let image of view3dImages">
+                <img [src]="image.url" height="100%">
+                <a mat-mini-fab color="primary" (click)="removeImage(view3dImages,index)">
+                  <mat-icon>remove</mat-icon>
+                </a>
+              </div>
+            </div>
+          </div>
+          <br />
+          <div>
+            <button mat-raised-button matStepperPrevious color="accent">Back</button>
+            &nbsp;
+            <button mat-raised-button matStepperNext color="accent">Next</button>
+          </div>
+        </form>
+      </mat-step>
+
+      <mat-step [stepControl]="submit">
+        <form [formGroup]="submit">
+          <ng-template matStepLabel>Done</ng-template>
+          You are now done.
+          <div>
+            <button mat-raised-button matStepperPrevious>Back</button>
+            <button mat-raised-button matStepperNext color="accent">submit</button>
+          </div>
+        </form>
       </mat-step>
     </mat-vertical-stepper>
   </mat-card-content>

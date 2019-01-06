@@ -14,9 +14,10 @@
 }
 .images{
     display: flex;
+    flex-wrap: wrap;
 }
 .images>.image{
-    height: 50px;
+    height: 100px;
     position: relative;
 }
 .image button{

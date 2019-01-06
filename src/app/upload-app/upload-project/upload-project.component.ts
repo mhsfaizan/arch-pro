@@ -12,10 +12,15 @@ export class UploadProjectComponent implements OnInit {
   siteplanImages = [];
   floorplanImages = [];
   elevationplanImages = []
+  sectionplanImages = []
+  view3dImages = []
   uploadProject: FormGroup;
   sitePlan: FormGroup;
   floorPlan: FormGroup;
   elevationPlan:FormGroup;
+  sectionPlan:FormGroup;
+  view3dPlan:FormGroup;
+  submit:FormGroup;
   constructor(private _common: CommonService, private _sanitizer: DomSanitizer) { }
   categories: string[];
   ngOnInit() {
@@ -41,11 +46,18 @@ export class UploadProjectComponent implements OnInit {
       siteplandescription: new FormControl('')
     });
     this.floorPlan = new FormGroup({
-      floorplanDescription: new FormControl('', Validators.required)
+      floorplanDescription: new FormControl('')
     });
     this.elevationPlan = new FormGroup({
-      elevationplanDescription:new FormControl('', Validators.required)
+      elevationplanDescription:new FormControl('')
     })
+    this.sectionPlan = new FormGroup({
+      sectionplanDescription: new FormControl('')
+    })
+    this.view3dPlan = new FormGroup({
+      view3dDescription:new FormControl('')
+    })
+    this.submit = new FormGroup({})
   }
   add(files,images) {
     for (let file of files) {
