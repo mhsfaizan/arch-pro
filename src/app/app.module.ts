@@ -18,6 +18,7 @@ import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database' ;
 import { AngularFireAuthModule } from '@angular/fire/auth' ;
+import { AngularFireStorageModule } from '@angular/fire/storage' ;
 /*====== firebase  module end==============*/
 
 
@@ -59,6 +60,7 @@ import { MySpinnerComponent } from './my-spinner/my-spinner.component';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
+    AngularFireStorageModule
   ],
   providers: [],
   bootstrap: [AppComponent]
