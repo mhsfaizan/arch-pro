@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CommonService } from 'src/app/services/common.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ProjectService } from 'src/app/services/project/project.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-upload-project',
@@ -11,6 +12,7 @@ import { ProjectService } from 'src/app/services/project/project.service';
 })
 export class UploadProjectComponent implements OnInit {
   isLoad:boolean = false;
+  isImageLoad:boolean = false;
   siteplanImages = [];
   floorplanImages = [];
   elevationplanImages = []
@@ -23,7 +25,7 @@ export class UploadProjectComponent implements OnInit {
   sectionPlan:FormGroup;
   view3d:FormGroup;
   // submit:FormGroup;
-  constructor(private _pro:ProjectService,private _common: CommonService, private _sanitizer: DomSanitizer) { }
+  constructor(private _pro:ProjectService,private _common: CommonService, private _sanitizer: DomSanitizer,private _router:Router) { }
   categories: string[];
   ngOnInit() {
     this._common.getCategory()
@@ -62,12 +64,21 @@ export class UploadProjectComponent implements OnInit {
     // this.submit = new FormGroup({})
   }
   add(files,images) {
+    
+    this.isImageLoad = true;
     for (let file of files) {
       images.push({
         url: this._sanitizer.bypassSecurityTrustResourceUrl(URL.createObjectURL(file)),
         src: file
       })
     }
+
+    this._pro.uploadImage(files).then((resp)=>{
+      console.log(resp);
+      this.isImageLoad = false;
+    },(err)=>{
+      console.log(err);
+    })
   }
   removeImage(images,index){
     images.splice(index,1);
@@ -90,26 +101,10 @@ export class UploadProjectComponent implements OnInit {
     obj.siteplanImages = this.siteplanImages;
     obj.floorplanImages = this.floorplanImages;
     obj.view3dImages = this.view3dImages;
-    // console.log("upload project = ",this.uploadProject.value);
-    // console.log("sectionplan = ",this.sectionPlan.value);
-    // console.log("elevation = ",this.elevationPlan.value);
-    // console.log("view3d = ",this.view3d.value);
-    // console.log("floor = ",this.floorPlan.value);
-    // console.log("site = ",this.sitePlan.value);
-    // console.log("sectiopnimages",this.sectionplanImages)
-    // console.log("elevationimages",this.elevationplanImages)
-    // console.log("siteplanimages",this.siteplanImages)
-    // console.log("floorimages",this.floorplanImages)
-    // console.log("viewimages",this.view3dImages)
+    
     this._pro.uploadProject(obj).then((resp)=>{
-      this._pro.uploadProjectFinally(resp).
-      then((res)=>{
-        console.log(res);
-        this.isLoad = false;
-      },(err)=>{
-        this.isLoad = false;
-        console.log(err);
-      })
+      this._router.navigate(["/dashboard"]);
+      this.isLoad = false;
     },(err)=>{
       this.isLoad = false;
       console.log(err);

@@ -1,2 +1,7 @@
+<section class="my-progress-bar" *ngIf="isLoadContent">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</section>
 <br>
-<app-carousal></app-carousal>
+<section *ngIf="!isLoadContent">
+    <app-carousal [projects]="projects"></app-carousal>
+</section>

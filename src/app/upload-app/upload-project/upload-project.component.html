@@ -65,7 +65,8 @@
               </button>
               <input hidden type="file" accept="image/*" multiple #siteplan (change)="add($event.target.files,siteplanImages)">
               <br /><br />
-              <div class="images" *ngIf="siteplanImages.length!=0">
+              <mat-spinner *ngIf="isImageLoad"></mat-spinner>
+              <div class="images" *ngIf="siteplanImages.length!=0&&!isImageLoad">
                 <div class="image" *ngFor="let image of siteplanImages;let index=index">
                   <img [src]="image.url" height="100%">
                   <button mat-mini-fab color="primary" (click)="removeImage(siteplanImages,index)">
@@ -94,7 +95,8 @@
               </button>
               <input hidden type="file" accept="image/*" multiple #floorplan (change)="add($event.target.files,floorplanImages)">
               <br /><br />
-              <div class="images" *ngIf="floorplanImages.length!=0">
+              <mat-spinner *ngIf="isImageLoad"></mat-spinner>
+              <div class="images" *ngIf="floorplanImages.length!=0&&!isImageLoad">
                 <div class="image" *ngFor="let image of floorplanImages">
                   <img [src]="image.url" height="100%">
                   <button mat-mini-fab color="primary" (click)="removeImage(floorplanImages,index)">
@@ -125,7 +127,8 @@
               </button>
               <input hidden type="file" accept="image/*" multiple #elevation (change)="add($event.target.files,elevationplanImages)">
               <br /><br />
-              <div class="images" *ngIf="elevationplanImages.length!=0">
+              <mat-spinner *ngIf="isImageLoad"></mat-spinner>
+              <div class="images" *ngIf="elevationplanImages.length!=0&&!isImageLoad">
                 <div class="image" *ngFor="let image of elevationplanImages">
                   <img [src]="image.url" height="100%">
                   <button mat-mini-fab color="primary" (click)="removeImage(elevationplanImages,index)">
@@ -156,7 +159,8 @@
               </button>
               <input hidden type="file" accept="image/*" multiple #section (change)="add($event.target.files,sectionplanImages)">
               <br /><br />
-              <div class="images" *ngIf="sectionplanImages.length!=0">
+              <mat-spinner *ngIf="isImageLoad"></mat-spinner>
+              <div class="images" *ngIf="sectionplanImages.length!=0&&!isImageLoad">
                 <div class="image" *ngFor="let image of sectionplanImages">
                   <img [src]="image.url" height="100%">
                   <button mat-mini-fab color="primary" (click)="removeImage(sectionplanImages,index)">
@@ -187,7 +191,8 @@
               </button>
               <input hidden type="file" accept="image/*" multiple #view (change)="add($event.target.files,view3dImages)">
               <br /><br />
-              <div class="images" *ngIf="view3dImages.length!=0">
+              <mat-spinner *ngIf="isImageLoad"></mat-spinner>
+              <div class="images" *ngIf="view3dImages.length!=0&&!isImageLoad">
                 <div class="image" *ngFor="let image of view3dImages">
                   <img [src]="image.url" height="100%">
                   <button mat-mini-fab color="primary" (click)="removeImage(view3dImages,index)">

@@ -25,11 +25,18 @@ a{
 a:hover{
     color: #fa8a11
 }
+.my-progress-bar{
+    margin:0 -8%;
+}
 @media(max-width:500px){
     .margin{
         width:95%;
+    }
+    .my-progress-bar{
+        margin:0 -2%;
     }
 }
 .ml-auto{
     margin-left: auto;
 }
+
