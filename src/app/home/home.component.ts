@@ -18,15 +18,14 @@ export class HomeComponent implements OnInit {
           project.url = await this._pro.getImageUrl(project.view3dImages[0]);
         }
         this.projects = projects;
-        this.isLoadContent = false;
         this.projects.sort((a,b)=>{
           return b.date-a.date;
-        })
+        });
+        this.isLoadContent = false;
+        console.log(this.projects);
       },(err)=>{
         console.log(err);
+        this.isLoadContent = false;
       })
   }
-  getImageUrl(image:string){
-      return  this._pro.getImageUrlOfSingle(image).subscribe(console.log)
-  }
-}
+} 

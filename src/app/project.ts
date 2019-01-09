@@ -9,13 +9,14 @@ export interface Project {
     name:string,
     sectionImages:string[],
     sectionplanDescription:string,
-    siteplanImages:string,
+    siteplanImages:string[],
     siteplandescription:string,
     type:string,
     uid:string,
     view3dDescription:string,
-    view3dImages:string,
+    view3dImages:string[],
     year:number,
     url:string,
-    date:number
+    date:number,
+    urls:string[]
 }

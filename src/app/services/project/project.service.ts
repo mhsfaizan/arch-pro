@@ -41,9 +41,13 @@ export class ProjectService {
 
   // }
   async uploadImage(files) {
+    let i = 0;
+    let images = [];
     for (let file of files) {
-      await this._storage.storage.ref().child("projects/" + file.name).put(file);
+      images[i] = await this._storage.storage.ref().child("projects/" + file.name).put(file);
+      i++;
     }
+    return images;
   }
   getProjects(){
     return this._db.list("projects",ref=>ref.orderByChild('date')).valueChanges();

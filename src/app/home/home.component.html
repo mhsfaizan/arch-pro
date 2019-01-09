@@ -13,7 +13,9 @@
                         <h1>{{project.name}}</h1>
                         <img src="{{project.url}}">
                         <div class="project-small-images">
-                            <!-- <img src="{{getImageUrl(image)}}" *ngFor="let image of project.view3dImages"> -->
+                            <div *ngFor="let image of project.view3dImages" class="small-image">
+                               
+                            </div>
                         </div>
                         <div class="project-data">
                             <div>

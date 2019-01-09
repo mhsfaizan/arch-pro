@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
     })
     .catch((err)=>{
       this.isShowLoad = false;
+      alert("username or password wrong ");
       console.log(err);
     })
   }
