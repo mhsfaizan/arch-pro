@@ -6,7 +6,8 @@ import { AngularFireDatabase } from '@angular/fire/database';
   providedIn: 'root'
 })
 export class ProjectService {
-  constructor(private _storage: AngularFireStorage, private _lg: LoginSignupService, private _db: AngularFireDatabase) { }
+  constructor(private _storage: AngularFireStorage, private _lg: LoginSignupService, private _db: AngularFireDatabase) {
+   }
   uploadProject(obj) {
     let { uid } = this._lg.getUser();
     let { area, institute, location, name, type, year } = obj.uploadProject;
@@ -24,7 +25,8 @@ export class ProjectService {
     // console.log(floorPlanimages);
     let view3dImages = this.iterator(obj.view3dImages);
     // console.log(view3dImages);
-    let project = { area, institute, location, name, type, year, elevationplanDescription, view3dDescription, sectionplanDescription, floorplanDescription, siteplandescription, sectionImages, elevationimages, siteplanImages, floorPlanimages, view3dImages, uid };
+    let date = Date.now();
+    let project = { area, institute, location, name, type, year, elevationplanDescription, view3dDescription, sectionplanDescription, floorplanDescription, siteplandescription, sectionImages, elevationimages, siteplanImages, floorPlanimages, view3dImages, uid ,date};
     return this._db.database.ref("projects").push(project);
   }
   iterator(images) {
@@ -44,10 +46,13 @@ export class ProjectService {
     }
   }
   getProjects(){
-    return this._db.list("projects").valueChanges();
+    return this._db.list("projects",ref=>ref.orderByChild('date')).valueChanges();
   }
-  getImageUrl(image){
+  getImageUrl(image:string){
     return this._storage.storage.ref("projects/"+image).getDownloadURL();
+  }
+  getImageUrlOfSingle(image:string){
+    return this._storage.ref("projects/"+image).getDownloadURL();
   }
 }
 

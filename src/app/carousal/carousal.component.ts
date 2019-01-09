@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ProjectService } from '../services/project/project.service';
 
 @Component({
   selector: 'app-carousal',
@@ -7,12 +6,10 @@ import { ProjectService } from '../services/project/project.service';
   styleUrls: ['./carousal.component.css']
 })
 export class CarousalComponent implements OnInit {
-  constructor(private _pro:ProjectService) { }
+  constructor() { }
   @Input() projects;
   ngOnInit() {
-    console.log(this.projects);
+    // console.log(this.projects);
   }
-  getImageUrl(image){
-    return this._pro.getImageUrl(image)
-  }
+  
 }

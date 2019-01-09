@@ -1,6 +1,6 @@
-<mat-sidenav-container class="sidenav-container" [hasBackdrop]="false">
+<mat-sidenav-container class="sidenav-container" [hasBackdrop]="true">
   <mat-sidenav #drawer class="sidenav" fixedInViewport="true" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async)" fixedTopGap="113">
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="false">
     <mat-nav-list>
       <a mat-list-item routerLink="/">HOME</a>
       <a mat-list-item href="#">PROJECTS</a>

@@ -1,18 +1,12 @@
-<section id="carousal" appCarousal>
-  <div class="carousal-container">
+<section id="carousal" >
+  <div class="carousal-container" appCarousal>
     <a src="#" class="carousal-main-image placholder-bg">
-      <img src="assets/image/3239520873274313.jpg">
-      <p>Project Name</p>
+      <img src="{{projects[0].url}}" alt="{{projects[0].name}}">
+      <p>{{projects[0].name}}</p>
     </a>
     <div class="carousal-small-images" >
-      <a src="#" class="small-image placholder-bg" >
-        <img src="assets/image/3239520873274313.jpg">
-      </a>
-      <a src="#" class="small-image placholder-bg">
-        <img src="assets/image/1584659850204582.jpg">
-      </a>
-      <a src="#" class="small-image placholder-bg">
-        <img src="assets/image/Tulips.jpg">
+      <a src="#" class="small-image placholder-bg" *ngFor="let project of projects|slice:0:3" >
+        <img src="{{project.url}}" alt="{{project.name}}">
       </a>
     </div>
     <div class="carousal-right-images">
