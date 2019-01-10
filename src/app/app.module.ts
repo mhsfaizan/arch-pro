@@ -33,7 +33,6 @@ import { CarousalDirective } from './carousal.directive';
 import { SignupComponent } from './signup/signup.component';
 import { TermConditionComponent } from './term-condition/term-condition.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { MySpinnerComponent } from './my-spinner/my-spinner.component';
 /*====== component end==============*/
 
 
@@ -49,7 +48,7 @@ import { MySpinnerComponent } from './my-spinner/my-spinner.component';
     SignupComponent,
     TermConditionComponent,
     DashboardComponent,
-    MySpinnerComponent,
+
   ],
   imports: [
     BrowserModule,

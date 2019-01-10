@@ -1,4 +1,4 @@
-<section id="carousal" >
+<section id="carousal" *ngIf="projects">
   <div class="carousal-container" appCarousal>
     <a src="#" class="carousal-main-image placholder-bg">
       <img src="{{projects[0].url}}" alt="{{projects[0].name}}">
@@ -20,4 +20,11 @@
       </a>
     </div>
   </div>
+</section>
+<section *ngIf="!projects">
+  <mat-card>
+    <mat-card-content>
+      <h1>No Data Found!</h1>
+    </mat-card-content>
+  </mat-card>
 </section>

@@ -8,22 +8,26 @@ import { Project } from '../project';
 })
 export class HomeComponent implements OnInit {
   isLoadContent: boolean = true;
-  projects:Project[];
+  projects: Project[];
   constructor(public _pro: ProjectService) { }
 
   ngOnInit() {
     this._pro.getProjects()
-      .subscribe(async (projects:Project[])=>{
-        for(let project of projects){
-          project.url = await this._pro.getImageUrl(project.view3dImages[0]);
+      .subscribe(async (projects: Project[]) => {
+        if (projects.length > 0) {
+          for (let project of projects) {
+            project.url = await this._pro.getImageUrl(project.view3dImages[0],project.randomId);
+          }
+          this.projects = projects;
+          this.projects.sort((a, b) => {
+            return b.date - a.date;
+          });
+          this.isLoadContent = false;
         }
-        this.projects = projects;
-        this.projects.sort((a,b)=>{
-          return b.date-a.date;
-        });
-        this.isLoadContent = false;
-        console.log(this.projects);
-      },(err)=>{
+        else{
+          this.isLoadContent = false;
+        }
+      }, (err) => {
         console.log(err);
         this.isLoadContent = false;
       })

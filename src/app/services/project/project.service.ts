@@ -7,8 +7,9 @@ import { AngularFireDatabase } from '@angular/fire/database';
 })
 export class ProjectService {
   constructor(private _storage: AngularFireStorage, private _lg: LoginSignupService, private _db: AngularFireDatabase) {
-   }
-  uploadProject(obj) {
+  }
+  async uploadProject(obj) {
+    let randomId = this._db.createPushId();
     let { uid } = this._lg.getUser();
     let { area, institute, location, name, type, year } = obj.uploadProject;
     let { elevationplanDescription } = obj.elevationPlan;
@@ -16,24 +17,24 @@ export class ProjectService {
     let { view3dDescription } = obj.view3d;
     let { floorplanDescription } = obj.floorPlan;
     let { siteplandescription } = obj.sitePlan;
-    let sectionImages = this.iterator(obj.sectionplanImages);
-    let elevationimages = this.iterator(obj.elevationimages);
+    let sectionImages = await this.iterator(obj.sectionplanImages,randomId);
+    let elevationimages = await this.iterator(obj.elevationimages,randomId);
     // console.log(elevationimages);
-    let siteplanImages = this.iterator(obj.siteplanImages);
+    let siteplanImages = await this.iterator(obj.siteplanImages,randomId);
     // console.log(siteplanImages);
-    let floorPlanimages = this.iterator(obj.floorplanImages);
+    let floorPlanimages = await this.iterator(obj.floorplanImages,randomId);
     // console.log(floorPlanimages);
-    let view3dImages = this.iterator(obj.view3dImages);
+    let view3dImages = await this.iterator(obj.view3dImages,randomId);
     // console.log(view3dImages);
     let date = Date.now();
-    let project = { area, institute, location, name, type, year, elevationplanDescription, view3dDescription, sectionplanDescription, floorplanDescription, siteplandescription, sectionImages, elevationimages, siteplanImages, floorPlanimages, view3dImages, uid ,date};
+    let project = { area, institute, location, name, type, year, elevationplanDescription, view3dDescription, sectionplanDescription, floorplanDescription, siteplandescription, sectionImages, elevationimages, siteplanImages, floorPlanimages, view3dImages, uid ,date,randomId};
     return this._db.database.ref("projects").push(project);
   }
-  iterator(images) {
+  async iterator(images,randomId) {
     let imgarr = [];
     for (let image of images) {
       imgarr.push(image.src.name);
-      // this._storage.storage.ref().child("projects/"+image.src.name).put(image.src);
+      await this._storage.storage.ref("projects").child(randomId+"/"+image.src.name).put(image.src);
     }
     return imgarr;
   }
@@ -41,19 +42,18 @@ export class ProjectService {
 
   // }
   async uploadImage(files) {
-    let i = 0;
     let images = [];
     for (let file of files) {
-      images[i] = await this._storage.storage.ref().child("projects/" + file.name).put(file);
-      i++;
+      await this._storage.storage.ref().child("projects/" + file.name).put(file);
+      images.push(file.name);
     }
     return images;
   }
   getProjects(){
     return this._db.list("projects",ref=>ref.orderByChild('date')).valueChanges();
   }
-  getImageUrl(image:string){
-    return this._storage.storage.ref("projects/"+image).getDownloadURL();
+  getImageUrl(image:string,id){
+    return this._storage.storage.ref("projects/"+id+"/"+image).getDownloadURL();
   }
   getImageUrlOfSingle(image:string){
     return this._storage.ref("projects/"+image).getDownloadURL();

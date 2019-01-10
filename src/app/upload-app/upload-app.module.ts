@@ -6,7 +6,7 @@ import { UploadAppComponent } from './upload-app.component';
 
 /* ===============materail common module start==============*/
 import { MaterialModuleModule } from '../material-module/material-module.module';
-import {MatStepperModule} from '@angular/material/stepper';
+import { MatStepperModule } from '@angular/material/stepper';
 import { UploadNavComponent } from './upload-nav/upload-nav.component';
 import { UploadBlogComponent } from './upload-blog/upload-blog.component';
 import { UploadThesisComponent } from './upload-thesis/upload-thesis.component';

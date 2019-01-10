@@ -18,5 +18,6 @@ export interface Project {
     year:number,
     url:string,
     date:number,
-    urls:string[]
+    urls:string[],
+    randomId:string
 }
