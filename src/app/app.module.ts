@@ -33,6 +33,8 @@ import { CarousalDirective } from './carousal.directive';
 import { SignupComponent } from './signup/signup.component';
 import { TermConditionComponent } from './term-condition/term-condition.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { BlogsComponent } from './blogs/blogs.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 /*====== component end==============*/
 
 
@@ -48,6 +50,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     SignupComponent,
     TermConditionComponent,
     DashboardComponent,
+    BlogsComponent,
+    SidebarComponent,
 
   ],
   imports: [

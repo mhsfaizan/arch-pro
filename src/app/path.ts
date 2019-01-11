@@ -1,0 +1,1 @@
+export const path:string = '/assets/image/placeholder.svg'; 

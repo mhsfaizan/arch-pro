@@ -38,9 +38,7 @@ export class ProjectService {
     }
     return imgarr;
   }
-  // uploadProjectFinally(obj){
-
-  // }
+  // upload image
   async uploadImage(files) {
     let images = [];
     for (let file of files) {
@@ -55,8 +53,8 @@ export class ProjectService {
   getImageUrl(image:string,id){
     return this._storage.storage.ref("projects/"+id+"/"+image).getDownloadURL();
   }
-  getImageUrlOfSingle(image:string){
-    return this._storage.ref("projects/"+image).getDownloadURL();
+  getImageUrlOfSingle(image:string,id){
+    return this._storage.ref("projects/"+id+"/"+image).getDownloadURL();
   }
 }
 

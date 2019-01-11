@@ -1,13 +1,26 @@
 <section id="carousal" *ngIf="projects">
-  <div class="carousal-container" appCarousal>
+  <div class="carousal-container" [appCarousal]="projects">
     <a src="#" class="carousal-main-image placholder-bg">
       <img src="{{projects[0].url}}" alt="{{projects[0].name}}">
       <p>{{projects[0].name}}</p>
     </a>
-    <div class="carousal-small-images" >
-      <a src="#" class="small-image placholder-bg" *ngFor="let project of projects|slice:0:3" >
-        <img src="{{project.url}}" alt="{{project.name}}">
+    <div class="carousal-small-images">
+      <a src="#" class="small-image placholder-bg" *ngFor="let project of projects|slice:0:3">
+        <img src="{{project.url|async}}" alt="{{project.name}}" [attr.src]="path">
       </a>
+      <div *ngIf="projects.length==1">
+        <a src="#" class="small-image placholder-bg">
+            <img src="assets/image/3239520873274313.jpg">
+        </a>
+        <a src="#" class="small-image placholder-bg">
+            <img src="assets/image/3239520873274313.jpg">
+        </a>
+      </div>
+      <div *ngIf="projects.length==2">
+        <a src="#" class="small-image placholder-bg">
+            <img src="assets/image/3239520873274313.jpg">
+        </a>
+      </div>
     </div>
     <div class="carousal-right-images">
       <a src="#" class="right-image placholder-bg">

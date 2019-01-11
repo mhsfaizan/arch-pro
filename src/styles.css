@@ -54,3 +54,70 @@ a:hover{
     left: 50%;
     transform: translate(-50%,-50%);
 }
+
+.bg-primary{
+    background-color: #fa8a11;
+    color: #fff;
+}
+
+
+
+
+
+/* common upload mat -header css */
+.disable{
+    background-color: rgba(255,255,255,0.5);
+}
+.disable .my-card{
+    z-index: -1;
+}
+.my-card{
+    margin: 1rem;
+}
+.my-card mat-card-header{
+    background-color: #eee;
+    margin: -16px -16px 0 !important;
+    padding: 16px;
+}
+.my-card mat-card-content{
+    padding-top: 1rem;
+}
+.my-card .full-width{
+    width: 100%;
+}
+.input-label figure{
+    justify-content: flex-start!important;
+}
+.input-label mat-label{
+    background: #bdbdbd;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+
+
+/* side bar css */
+.sidebar-header{
+    min-height: 35px;
+    width: 100%;
+    display: flex;
+    padding-left: 0.8rem;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+.sidebar-content{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+.sidebar-content>img{
+    height: 70px;
+    width: 50%;
+    object-fit: cover;
+    object-position: center;
+}
+.sidebar-content span{
+    width: 45%;
+}

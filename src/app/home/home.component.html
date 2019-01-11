@@ -11,10 +11,10 @@
                 <div *ngFor="let project of projects" >
                     <mat-card class="project">
                         <h1>{{project.name}}</h1>
-                        <img src="{{project.url}}">
+                        <img  src="{{project.url|async}}" [attr.src]='path'>
                         <div class="project-small-images">
-                            <div *ngFor="let image of project.view3dImages" class="small-image">
-                               
+                            <div *ngFor="let url of project.urls;let index=index" class="small-image" [ngClass]="{'hide-small-images':index>4}">
+                               <img src="{{url|async}}" [alt]="project.name"  [attr.src]='path'/>
                             </div>
                         </div>
                         <div class="project-data">
@@ -38,7 +38,7 @@
                 </div>
             </div>
             <div class="col-md-4">
-
+                <app-sidebar></app-sidebar>
             </div>
         </div>
     </div>

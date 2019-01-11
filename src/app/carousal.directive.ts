@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Renderer2, OnDestroy, OnInit } from '@angular/core';
+import { Directive, ElementRef, Renderer2, OnDestroy, OnInit, Input } from '@angular/core';
 
 @Directive({
   selector: '[appCarousal]',
@@ -6,8 +6,10 @@ import { Directive, ElementRef, Renderer2, OnDestroy, OnInit } from '@angular/co
 export class CarousalDirective implements OnInit, OnDestroy {
   constructor(private el: ElementRef, private _render: Renderer2) {
   }
+  @Input("appCarousal") projects;
   interval: any;
   ngOnInit() {
+    // console.log(this.projects);
     setTimeout(execute, 0);
     let that = this;
     function execute() {
@@ -17,7 +19,7 @@ export class CarousalDirective implements OnInit, OnDestroy {
       that._render.setAttribute(mainimage, "src", images[1].childNodes[0].getAttribute("src"));
       that._render.setProperty(mainElements.childNodes[0].childNodes[1], 'innerHTML', images[1].childNodes[0].getAttribute("alt"));
       let i = 1;
-      for (let j = 1; j <= 3; j++) {
+      for (let j = 1; j <= that.projects.length; j++) {
         images[j].childNodes[0].addEventListener('click', (event) => {
           that._render.setAttribute(mainimage, "src", event.target.getAttribute("src"));
           that._render.setProperty(mainElements.childNodes[0].childNodes[1], 'innerHTML', event.target.getAttribute("alt"));
@@ -28,7 +30,7 @@ export class CarousalDirective implements OnInit, OnDestroy {
         that._render.setAttribute(mainimage, "src", images[i].childNodes[0].getAttribute("src"));
         that._render.setProperty(mainElements.childNodes[0].childNodes[1], 'innerHTML', images[i].childNodes[0].getAttribute("alt"));
         i++;
-        if (i > 3) {
+        if (i > that.projects.length) {
           i = 1;
         }
       }, 1500);
