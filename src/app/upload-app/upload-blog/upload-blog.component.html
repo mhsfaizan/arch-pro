@@ -1,34 +1,52 @@
-<mat-card class="my-card">
-    <mat-card-header>
-        <strong>UPLOAD BLOG</strong>
-    </mat-card-header>
-    <mat-card-content>
-        <form [formGroup]="blogForm">
-            <mat-grid-list cols="2" rowHeight="4.5rem" gutterSize="1rem">
-                <mat-grid-tile>
-                    <mat-form-field appearance="outline" class="full-width">
-                        <mat-label>Title</mat-label>
-                        <input matInput placeholder="title.." formControlName="title">
-                    </mat-form-field>
-                </mat-grid-tile>
-                <mat-grid-tile>
-                    <mat-form-field appearance="outline" class="full-width">
-                        <mat-select placeholder="Category" formControlName="category">
-                            <mat-option *ngFor="let category of categories" [value]="category">{{category}}</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </mat-grid-tile>
-                <mat-grid-tile class="input-label">
-                    <mat-label (click)="blog.click()" >Choose file</mat-label>
-                    <input type="file" #blog accept="image/*" hidden>
-                </mat-grid-tile>
-                <mat-grid-tile>
-                    <mat-form-field appearance="outline" class="full-width">
-                        <mat-label>Your Name</mat-label>
-                        <input matInput placeholder="Your Name.." formControlName="name">
-                    </mat-form-field>
-                </mat-grid-tile>
-            </mat-grid-list>
-        </form>
-    </mat-card-content>
-</mat-card>
+<section class="spinner-container" *ngIf="isUploaded">
+    <div class="spinner">
+        <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+    </div>
+</section>
+<section [ngClass]="{'disable':isUploaded}">
+    <mat-card class="my-card">
+        <mat-card-header>
+            <strong>UPLOAD BLOG</strong>
+        </mat-card-header>
+        <mat-card-content>
+            <form [formGroup]="blogForm">
+                <mat-grid-list [cols]="(isHandset$ | async) ? 1 : 2" rowHeight="4.5rem" gutterSize="1rem">
+                    <mat-grid-tile>
+                        <mat-form-field appearance="outline" class="full-width">
+                            <mat-label>Title</mat-label>
+                            <input matInput placeholder="title.." formControlName="title">
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <mat-form-field appearance="outline" class="full-width">
+                            <mat-select placeholder="Category" formControlName="category">
+                                <mat-option *ngFor="let category of categories" [value]="category">{{category}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile class="input-label">
+                        <mat-label (click)="blog.click()">Choose file</mat-label>
+                        <input type="file" #blog accept="image/*" hidden (change)="getBlogImage($event.target.files[0])">
+                        &nbsp;&nbsp;
+                        <div class="blog-img" *ngIf="blogImage">
+                            <img [src]="blogImage.url" height="70" />
+                            <button mat-mini-fab color="primary" (click)="remove()">
+                                <mat-icon>remove</mat-icon>
+                            </button>
+                        </div>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <mat-form-field appearance="outline" class="full-width">
+                            <mat-label>Your Name</mat-label>
+                            <input matInput placeholder="Your Name.." formControlName="name">
+                        </mat-form-field>
+                    </mat-grid-tile>
+                </mat-grid-list>
+            </form>
+            <div [froalaEditor] (froalaModelChange)="change($event)" [style.width]="'100%'" [style.border]="'1px solid #555'"
+                [style.border-radius]="'4px'"></div>
+            <br /><br />
+            <button mat-raised-button color="primary" (click)="submitBlog()">Post</button>
+        </mat-card-content>
+    </mat-card>
+</section>

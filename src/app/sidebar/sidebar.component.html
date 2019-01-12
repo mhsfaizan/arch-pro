@@ -5,18 +5,18 @@
             <span>Blogs</span>
           </div>
           <div class="sidebar-body">
-            <div class="sidebar-content">
+            <div class="sidebar-content" *ngFor="let blog of blogs|slice:0:3">
+              <img [src]="(blog.url | async)" alt="{{blog.img}}"  [attr.src] = "path"/>
+              <span>{{blog.title}}</span>
+            </div>
+            <!-- <div class="sidebar-content">
               <img src="/assets/image/Tulips.jpg" alt="Tulips" />
               <span>Heading</span>
             </div>
             <div class="sidebar-content">
               <img src="/assets/image/Tulips.jpg" alt="Tulips" />
               <span>Heading</span>
-            </div>
-            <div class="sidebar-content">
-              <img src="/assets/image/Tulips.jpg" alt="Tulips" />
-              <span>Heading</span>
-            </div>
+            </div> -->
           </div>
         </section>
   </mat-card-content>

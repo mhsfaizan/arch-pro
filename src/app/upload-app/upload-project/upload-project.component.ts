@@ -4,6 +4,9 @@ import { CommonService } from 'src/app/services/common.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ProjectService } from 'src/app/services/project/project.service';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-upload-project',
@@ -23,9 +26,17 @@ export class UploadProjectComponent implements OnInit {
   elevationPlan:FormGroup;
   sectionPlan:FormGroup;
   view3d:FormGroup;
+  // know breakpoint 
+  
+
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+  .pipe(
+    map(result => result.matches)
+  );
+  
 
   // submit:FormGroup;
-  constructor(private _pro:ProjectService,private _common: CommonService, private _sanitizer: DomSanitizer,private _router:Router) { }
+  constructor(private _pro:ProjectService,private _common: CommonService, private _sanitizer: DomSanitizer,private _router:Router,private breakpointObserver: BreakpointObserver) { }
   categories: string[];
   ngOnInit() {
     this._common.getCategory()

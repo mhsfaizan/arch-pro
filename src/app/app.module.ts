@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-
 /* ===============materail common module start==============*/
 import { MaterialModuleModule } from './material-module/material-module.module';
 /* ===============materail common module end==============*/
@@ -63,7 +62,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
