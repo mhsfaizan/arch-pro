@@ -8,5 +8,6 @@ export interface Blog{
     title:string;
     userId: string;
     img:string;
+    date:number;
     url:Observable<any>;
 }

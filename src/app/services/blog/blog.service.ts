@@ -8,17 +8,17 @@ import { Blog } from 'src/app/blog';
   providedIn: 'root'
 })
 export class BlogService {
-
   constructor(private _storage:AngularFireStorage,private _db:AngularFireDatabase,private _lg:LoginSignupService) { }
   async uploadBlog(blog){
+    blog.date = Date.now();
     blog.blogDirId = this._db.createPushId();
     blog.userId = this._lg.getUser().uid;
     blog.img = blog.file.name;
-    await this._storage.ref("blogs/"+blog.blogDirId+"/"+blog.file.name).put(blog.file)
+    await this._storage.ref("blogs/"+blog.blogDirId+"/"+blog.file.name).put(blog.file);
     return this._db.list("blogs/").push(blog);
   }
   getBlogs():Observable<any[]>{
-    return this._db.list("blogs").valueChanges();
+    return this._db.list("blogs",ref=>ref.orderByChild('blogDirId')).valueChanges();
   }
   getImage(img,id){
     return this._storage.ref("blogs/"+id+"/"+img).getDownloadURL();

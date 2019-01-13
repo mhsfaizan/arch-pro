@@ -8,13 +8,20 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                <div *ngFor="let project of projects" >
+                <div *ngFor="let project of projects;let i=index">
                     <mat-card class="project">
                         <h1>{{project.name}}</h1>
-                        <img  src="{{project.url|async}}" [attr.src]='path'>
+                        <img [src]="(project.url|async)" [attr.src]='path'>
                         <div class="project-small-images">
-                            <div *ngFor="let url of project.urls;let index=index" class="small-image" [ngClass]="{'hide-small-images':index>4}">
-                               <img src="{{url|async}}" [alt]="project.name"  [attr.src]='path'/>
+                            <div *ngFor="let url of project.urls;let index=index" class="small-image" [ngClass]="{
+                                'hide-small-images':index>4,
+                                'layer-container':index==4
+                            }"
+                                [ngClass]="{'layer':index==4}">
+                                <img [src]="(url|async)" [alt]="project.name" [attr.src]='path' />
+                                <div *ngIf="index==4" class="layer" (click)="open(i,index)">
+                                    <span>+{{project.urls.length-5}}</span>
+                                </div>
                             </div>
                         </div>
                         <div class="project-data">

@@ -51,6 +51,26 @@
 .hide-small-images{
     display: none;
 }
+.layer-container{
+    position: relative;
+    cursor: pointer;
+}
+.layer{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,.7);
+}
+.layer span{
+    position: absolute;
+    top: 50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    font-size: 2rem;
+    color:#fff;
+}
 @media(max-width:900px){
     .col-md-8  {
         flex-basis: 100%;

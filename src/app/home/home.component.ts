@@ -5,6 +5,7 @@ import { forkJoin } from 'rxjs';
 import { path } from '../path';
 import { BlogService } from '../services/blog/blog.service';
 import { Blog } from '../blog';
+import { Lightbox } from 'ngx-lightbox';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -15,21 +16,21 @@ export class HomeComponent implements OnInit {
   projects: Project[];
   blogs: Blog[];
   path: string;
-  constructor(public _pro: ProjectService, private _blog: BlogService) { }
+  constructor(public _pro: ProjectService, private _blog: BlogService,private _lightbox:Lightbox) { }
 
   ngOnInit() {
     this.path = path;
     this._pro.getProjects()
       .subscribe((projects: Project[]) => {
         if (projects.length > 0) {
+          this.projects = projects;
+          this.isLoadContent = false;
           for (let project of projects) {
             project.url = this._pro.getImageUrlOfSingle(project.view3dImages[0], project.randomId);
           }
-          this.projects = projects;
           this.projects.sort((a, b) => {
             return b.date - a.date;
           });
-          this.isLoadContent = false;
 
           // add urls
           for (let project of projects) {
@@ -57,8 +58,25 @@ export class HomeComponent implements OnInit {
          blog.url = this._blog.getImage(blog.img,blog.blogDirId);
        }
        this.blogs = blogs;
+       this.blogs.sort((obj1,obj2)=>{
+          return obj2.date-obj1.date;
+       })
       },(err)=>{  
         console.log(err);
       })
   }
+
+  open(index: number,i:number): void {
+    // open lightbox
+    forkJoin(this.projects[index].urls).subscribe((images)=>{
+      let albums = [];
+      for(let image of images){
+          albums.push({
+            src:image
+          })
+      }
+      this._lightbox.open(albums, i,{showImageNumberLabel: true });
+    });
+  }
+  
 } 

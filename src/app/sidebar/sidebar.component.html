@@ -1,10 +1,10 @@
 <mat-card>
   <mat-card-content>
-      <section id="sidebar">
+      <section id="sidebar" >
           <div class="sidebar-header bg-primary">
             <span>Blogs</span>
           </div>
-          <div class="sidebar-body">
+          <div class="sidebar-body" *ngIf="blogs.length">
             <div class="sidebar-content" *ngFor="let blog of blogs|slice:0:3">
               <img [src]="(blog.url | async)" alt="{{blog.img}}"  [attr.src] = "path"/>
               <span>{{blog.title}}</span>
@@ -19,5 +19,8 @@
             </div> -->
           </div>
         </section>
+        <div *ngIf="!blogs.length">
+            <span>Not Found</span>
+        </div>
   </mat-card-content>
 </mat-card>
