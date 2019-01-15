@@ -1,16 +1,7 @@
 .project-container{
     display: flex;
 }
-.row{
-    display: flex;
-    justify-content: space-between;
-}
-.col-md-8{
-    flex-basis: 78%;
-}
-.col-md-4{
-    flex-basis: 20%;
-}
+
 .project{
     margin-bottom: 1rem;
 }
@@ -70,12 +61,4 @@
     transform:translate(-50%,-50%);
     font-size: 2rem;
     color:#fff;
-}
-@media(max-width:900px){
-    .col-md-8  {
-        flex-basis: 100%;
-    }
-    .col-md-4{
-        display: none;
-    }
 }

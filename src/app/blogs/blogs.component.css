@@ -1,0 +1,15 @@
+.blogs{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    height: 20rem;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+.blog-image{
+    flex-basis:48%;
+    height: 100%;
+}
+.blog-content{
+    flex-basis: 49%;
+}

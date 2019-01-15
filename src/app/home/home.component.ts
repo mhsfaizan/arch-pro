@@ -53,11 +53,17 @@ export class HomeComponent implements OnInit {
   }
   getBlogs() {
     this._blog.getBlogs()
-      .subscribe((blogs)=>{
-       for(let blog of blogs){
-         blog.url = this._blog.getImage(blog.img,blog.blogDirId);
+      .on('value',(snapshot)=>{
+        let blogs = snapshot.val();
+       for(let blogid in  blogs){
+        blogs[blogid].url = this._blog.getImage(blogs[blogid].img,blogs[blogid].blogDirId);
+        blogs[blogid].blogId = blogid;
+        if(this.blogs == undefined){
+          this.blogs = [];
+        }
+        this.blogs.push(blogs[blogid]);
        }
-       this.blogs = blogs;
+      //  this.blogs = blogs;
        this.blogs.sort((obj1,obj2)=>{
           return obj2.date-obj1.date;
        })

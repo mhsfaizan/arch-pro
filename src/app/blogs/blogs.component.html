@@ -1,0 +1,39 @@
+<section class="my-progress-bar" *ngIf="isLoadContent">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</section>
+<br>
+<section id="blogs" *ngIf="!isLoadContent">
+    <div class="row">
+        <div class="col-md-8" *ngIf="blogs">
+            <div class="blogs" *ngFor="let blog of blogs|slice:0:10">
+                <div class="blog-image image-fit">
+                    <img [src]="(blog.url | async)" [attr.src]="path" />
+                </div>
+                <div class="blog-content">
+                    <h1><a routerLink="/blog/{{blog.blogId}}">{{blog.title}}</a></h1>
+                    <span class="d-flex">
+                        <mat-icon>event</mat-icon>
+                        &nbsp;<span>{{blog.date|date}}</span>
+                        &nbsp;<mat-icon>alarm</mat-icon>
+                        &nbsp;<span>{{blog.date|date:'shortTime'}}</span>
+                    </span>
+                    <p [innerHTML]="blog.editor"></p>
+                </div>
+            </div>
+            <!-- <div class="blogs">
+                <div class="blog-image image-fit">
+                    <img src="assets/image/Tulips.jpg" />
+                </div>
+                <div class="blog-content ">
+                    <h1>Blog Heading</h1>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae quas enim est illo ipsam?
+                        Facilis alias minima quam. Voluptatibus aliquid distinctio qui. Voluptas, reiciendis? Omnis
+                        adipisci debitis dolorem aperiam nihil?</p>
+                </div>
+            </div> -->
+        </div>
+        <div class="col-md-4">
+            <p>dhgfdghud</p>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,24 @@
+<section class="my-progress-bar" *ngIf="isLoadContent">
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</section>
+<br>
+<section *ngIf="!isLoadContent">
+  <div class="yellow-line">
+    <strong>All</strong>
+    <strong [matMenuTriggerFor]="appMenu" [matMenuTriggerData]="categories">Category <mat-icon>add</mat-icon>
+      <mat-menu #appMenu="matMenu">
+        <ng-template matMenuContent let-name="categories">
+            <button mat-menu-item (click)="filter('')">All</button>
+          <button mat-menu-item *ngFor="let category of categories" (click)="filter(category)">{{category}}</button>
+        </ng-template>
+      </mat-menu>
+    </strong>
+
+  </div>
+  <br />
+  <div class="projects">
+    <div class="project-image image-fit" *ngFor="let project of ( projects | filter:cat)">
+      <img [src]="(project.url | async)" [attr.src]="path">
+    </div>
+  </div>
+</section>

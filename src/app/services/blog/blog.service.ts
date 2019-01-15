@@ -17,10 +17,13 @@ export class BlogService {
     await this._storage.ref("blogs/"+blog.blogDirId+"/"+blog.file.name).put(blog.file);
     return this._db.list("blogs/").push(blog);
   }
-  getBlogs():Observable<any[]>{
-    return this._db.list("blogs",ref=>ref.orderByChild('blogDirId')).valueChanges();
+  getBlogs(){
+    return this._db.database.ref("blogs");
   }
   getImage(img,id){
     return this._storage.ref("blogs/"+id+"/"+img).getDownloadURL();
+  }
+  getBlog(){
+    return this._db.database.ref("blogs");
   }
 }

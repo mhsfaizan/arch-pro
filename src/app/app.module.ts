@@ -36,6 +36,9 @@ import { TermConditionComponent } from './term-condition/term-condition.componen
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BlogsComponent } from './blogs/blogs.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { BlogComponent } from './blog/blog.component';
+import { ProjectsComponent } from './projects/projects.component';
+import { FilterPipe } from './filter.pipe';
 /*====== component end==============*/
 
 
@@ -53,6 +56,9 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     DashboardComponent,
     BlogsComponent,
     SidebarComponent,
+    BlogComponent,
+    ProjectsComponent,
+    FilterPipe,
 
   ],
   imports: [

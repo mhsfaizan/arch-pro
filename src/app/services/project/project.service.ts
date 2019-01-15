@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { LoginSignupService } from '../user/login-signup.service';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { AngularFireDatabase } from '@angular/fire/database';
+import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
@@ -49,6 +50,16 @@ export class ProjectService {
   }
   getProjects(){
     return this._db.list("projects",ref=>ref.orderByChild('date')).valueChanges();
+  }
+  getProjectsSnaphot(){
+    return this._db.list("/projects",ref=>ref.orderByChild('date')).snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const projectId = a.payload.key;
+          const data = a.payload.val();
+          return {projectId,...data};
+        });
+      }));
   }
   getImageUrl(image:string,id){
     return this._storage.storage.ref("projects/"+id+"/"+image).getDownloadURL();

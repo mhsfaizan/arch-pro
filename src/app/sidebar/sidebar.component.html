@@ -5,10 +5,10 @@
             <span>Blogs</span>
           </div>
           <div class="sidebar-body" *ngIf="blogs.length">
-            <div class="sidebar-content" *ngFor="let blog of blogs|slice:0:3">
+            <a routerLink="/blog/{{blog.blogId}}" class="sidebar-content" *ngFor="let blog of blogs|slice:0:3">
               <img [src]="(blog.url | async)" alt="{{blog.img}}"  [attr.src] = "path"/>
               <span>{{blog.title}}</span>
-            </div>
+            </a>
             <!-- <div class="sidebar-content">
               <img src="/assets/image/Tulips.jpg" alt="Tulips" />
               <span>Heading</span>

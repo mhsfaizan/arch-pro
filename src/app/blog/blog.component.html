@@ -1,0 +1,17 @@
+<section class="my-progress-bar" *ngIf="isLoadContent">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</section>
+<br>
+<section id="blogid" *ngIf="blog" class="blog-container">
+  <div class="blog">
+    <strong>{{blog.title}}</strong>
+    <span>{{blog.date|date}}</span>
+    <br/><br/>
+    <div class="image">
+        <img [src]="(blog.url | async)" [attr.src]="path" width="100%"/>
+    </div>
+    <div class="blog-content">
+      <p [innerHTML]="blog.editor"></p>
+    </div>
+  </div>
+</section>
