@@ -1,0 +1,24 @@
+<section class="my-progress-bar" *ngIf="isLoadContent">
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</section>
+<br>
+<section id="project" *ngIf="!isLoadContent">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="project-container">
+        <h1>{{project.name}}</h1>
+        <img [src]="(project.url |async)" [attr.src]="path" width="100%" />
+        <h1>All Images</h1>
+        <div class="small-image-container">
+          <div class="small-images image-fit" *ngFor="let url of project.urls;let index = index" (click)="open(index)">
+            <img [src]="(url | async)"  [attr.src]="path" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <br>
+      <app-sidebar *ngIf="similarProjects" [contents]="similarProjects" [title]="'Similar Projects'"></app-sidebar>
+    </div>
+  </div>
+</section>

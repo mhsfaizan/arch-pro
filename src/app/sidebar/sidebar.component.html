@@ -2,9 +2,9 @@
   <mat-card-content>
       <section id="sidebar" >
           <div class="sidebar-header bg-primary">
-            <span>Blogs</span>
+            <span>{{title}}</span>
           </div>
-          <div class="sidebar-body" *ngIf="blogs.length">
+          <div class="sidebar-body" *ngIf="blogs">
             <a routerLink="/blog/{{blog.blogId}}" class="sidebar-content" *ngFor="let blog of blogs|slice:0:3">
               <img [src]="(blog.url | async)" alt="{{blog.img}}"  [attr.src] = "path"/>
               <span>{{blog.title}}</span>
@@ -18,8 +18,14 @@
               <span>Heading</span>
             </div> -->
           </div>
+          <div *ngIf="projects" class="sidebar-body">
+              <a routerLink="/project/{{project.projectId}}" class="sidebar-content" *ngFor="let project of projects|slice:0:3">
+                <img [src]="(project.url | async)" alt="{{project.name}}"  [attr.src] = "path"/>
+                <span>{{project.name}}</span>
+              </a>
+          </div>
         </section>
-        <div *ngIf="!blogs.length">
+        <div *ngIf="contents.length==0">
             <span>Not Found</span>
         </div>
   </mat-card-content>

@@ -39,6 +39,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { BlogComponent } from './blog/blog.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { FilterPipe } from './filter.pipe';
+import { ProjectComponent } from './project/project.component';
 /*====== component end==============*/
 
 
@@ -59,6 +60,7 @@ import { FilterPipe } from './filter.pipe';
     BlogComponent,
     ProjectsComponent,
     FilterPipe,
+    ProjectComponent,
 
   ],
   imports: [

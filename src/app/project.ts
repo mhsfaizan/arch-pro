@@ -19,7 +19,7 @@ export interface Project {
     view3dDescription:string;
     view3dImages:string[];
     year:number;
-    url:Observable<any>;
+    url:Observable<any[]>;
     date:number;
     urls:any[];
     randomId:string;

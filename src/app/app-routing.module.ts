@@ -9,6 +9,7 @@ import { AuthGuard } from './auth.guard';
 import { BlogComponent } from './blog/blog.component';
 import { BlogsComponent } from './blogs/blogs.component';
 import { ProjectsComponent } from './projects/projects.component';
+import { ProjectComponent } from './project/project.component';
 
 const routes: Routes = [
   {path:"",redirectTo:"/home",pathMatch:"full"},
@@ -20,11 +21,12 @@ const routes: Routes = [
   {path:'blog/:id',component:BlogComponent},
   {path:'blogs',component:BlogsComponent},
   {path:'projects',component:ProjectsComponent},
+  {path:'project/:id',component:ProjectComponent},
   {path:"upload",loadChildren:'./upload-app/upload-app.module#UploadAppModule',canActivate:[AuthGuard]}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{onSameUrlNavigation:'reload'})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

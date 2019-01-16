@@ -17,8 +17,9 @@
   </div>
   <br />
   <div class="projects">
-    <div class="project-image image-fit" *ngFor="let project of ( projects | filter:cat)">
+    <a routerLink="/project/{{project.projectId}}" class="project-image image-fit" *ngFor="let project of ( projects | filter:cat)">
       <img [src]="(project.url | async)" [attr.src]="path">
-    </div>
+      <span>{{project.name}}</span>
+    </a>
   </div>
 </section>

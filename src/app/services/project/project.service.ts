@@ -61,11 +61,22 @@ export class ProjectService {
         });
       }));
   }
-  getImageUrl(image:string,id){
+  getImageUrl(image:string,id:string){
     return this._storage.storage.ref("projects/"+id+"/"+image).getDownloadURL();
   }
   getImageUrlOfSingle(image:string,id){
     return this._storage.ref("projects/"+id+"/"+image).getDownloadURL();
+  }
+  getSimilarProject(type:string){
+    return this._db.list("/projects",ref=>ref.orderByChild('type').equalTo(type)).snapshotChanges().pipe(
+      map(actions=>{
+        return actions.map(a=>{
+          const projectId = a.payload.key;
+          const data = a.payload.val();
+          return {projectId,...data};
+        })
+      })
+    )
   }
 }
 
