@@ -9,14 +9,6 @@
               <img [src]="(blog.url | async)" alt="{{blog.img}}"  [attr.src] = "path"/>
               <span>{{blog.title}}</span>
             </a>
-            <!-- <div class="sidebar-content">
-              <img src="/assets/image/Tulips.jpg" alt="Tulips" />
-              <span>Heading</span>
-            </div>
-            <div class="sidebar-content">
-              <img src="/assets/image/Tulips.jpg" alt="Tulips" />
-              <span>Heading</span>
-            </div> -->
           </div>
           <div *ngIf="projects" class="sidebar-body">
               <a routerLink="/project/{{project.projectId}}" class="sidebar-content" *ngFor="let project of projects|slice:0:3">

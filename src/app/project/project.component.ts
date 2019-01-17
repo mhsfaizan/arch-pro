@@ -18,8 +18,8 @@ export class ProjectComponent implements OnInit {
   similarProjects: Project[];
   constructor(private _router: Router, private _lightbox: Lightbox, private _activatedRoute: ActivatedRoute, private _pro: ProjectService) { }
   ngOnInit() {
-    this.path = path;
     this._activatedRoute.paramMap.subscribe((param) => {
+      this.path = path;
       let projectId = param.get("id");
       this._pro.getProjectsSnaphot().subscribe((projects: Project[]) => {
         this.isLoadContent = false;

@@ -13,13 +13,15 @@
         </ng-template>
       </mat-menu>
     </strong>
-
   </div>
   <br />
   <div class="projects">
-    <a routerLink="/project/{{project.projectId}}" class="project-image image-fit" *ngFor="let project of ( projects | filter:cat)">
+    <a routerLink="/project/{{project.projectId}}" class="project-image image-fit" *ngFor="let project of projects | filter:cat">
       <img [src]="(project.url | async)" [attr.src]="path">
       <span>{{project.name}}</span>
     </a>
+    <!-- <mat-card *ngIf="projects.length==0">
+      <mat-card-content>No Data Found!</mat-card-content>
+    </mat-card> -->
   </div>
 </section>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { path } from '../path';
 import { Blog } from '../blog';
 import { Project } from '../project';
@@ -9,7 +9,7 @@ import { Router, NavigationEnd } from '@angular/router';
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css']
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent implements OnInit,OnChanges {
   @Input() contents;
   @Input() title;
   path:string;
@@ -24,5 +24,10 @@ export class SidebarComponent implements OnInit {
     else if(this.title=="Similar Projects"){
       this.projects = this.contents;
     }    
+  }
+  ngOnChanges(changes:SimpleChanges){
+    if(this.projects){
+      this.projects = changes.contents.currentValue;
+    }
   }
 }

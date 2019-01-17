@@ -7,7 +7,7 @@
     <div class="col-md-8">
       <div class="project-container">
         <h1>{{project.name}}</h1>
-        <img [src]="(project.url |async)" [attr.src]="path" width="100%" />
+        <img [src]="(project.url | async)" [attr.src]="path" width="100%" />
         <h1>All Images</h1>
         <div class="small-image-container">
           <div class="small-images image-fit" *ngFor="let url of project.urls;let index = index" (click)="open(index)">
